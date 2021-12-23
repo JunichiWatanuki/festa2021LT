@@ -1,0 +1,10 @@
+# action.yml
+name: 'addAandB'
+description: '単純なa+bを行うだけのAction'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.intA }}
+    - ${{ inputs.intB }}
+    - ${{ inputs.strHeader }}

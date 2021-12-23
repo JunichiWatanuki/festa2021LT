@@ -1,0 +1,36 @@
+name: 足し算(a+b)実行
+
+on:
+  workflow_dispatch:
+    inputs:
+      integerA:
+        description: '一つ目の数字(a)'
+        required: true
+        default: '1'
+      integerB:
+        description: '一つ目の数字(b)'
+        required: true
+        default: '2'
+      headerText:
+        description: '枕詞'
+        type: choice
+        default: '無し'
+        options:
+        - 足し算の結果は
+        - 二つの値の合計は
+        - 無し
+
+jobs:
+  job_Addition:
+    runs-on: ubuntu-latest
+    name: addAandB
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: run additional action
+        id: idAdditionalAandB
+        uses: ./.github/actions/additionalAandB
+        with:
+          intA: ${{ github.event.inputs.integerA }}
+          intB: ${{ github.event.inputs.integerB }}
+          strHeader: ${{ github.event.inputs.headerText }}
